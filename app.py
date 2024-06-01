@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
-from llm_formating import format_note, add_topic
+from modules.llm_formating import format_note, add_topic
+from modules.cloudinary_helper import upload_image_from_url
 from flask_cors import CORS
 import uuid
 import redis
@@ -8,10 +9,11 @@ import os
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Allow CORS for requests from http://localhost:3000
 
 # Create a connection to the Redis server
 client = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
+
 
 # Route to render the HTML form
 @app.route('/')
@@ -89,12 +91,15 @@ def get_all_notes():
 
 @app.route('/upload', methods=['POST'])
 def upload_image():
-    print('ping the image endpoint')
-    image = request.files['image']
-    print('image', image)
-    path = os.path.join('uploads', image.filename)
-    image.save(path)
-    return jsonify({"url": f"http://127.0.0.1:5000/{path}"})
+    try: 
+        data = request.json
+        image_url = data.get('url')
+        cloudinary_url = upload_image_from_url(image_url)
+        return jsonify({"url": cloudinary_url}), 200
+    except Exception as e:
+        return jsonify({'error upload image': str(e)}), 500
+
+
     
 if __name__ == '__main__':
     app.run(debug=True)

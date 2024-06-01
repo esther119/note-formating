@@ -16,16 +16,18 @@ cloudinary.config(
   api_secret=api_secret
 )
 
-def upload_image_from_url(image_url=None):
+def upload_image_from_url(image_url):
+    """
+    Upload image url to cloudinary
+    """
     try: 
-        image_url = 'https://tmpfiles.org/dl/6978801/untitled_artwork12.png'
-        result = cloudinary.uploader.upload(image_url)
+        result = cloudinary.uploader.upload(image_url, tags=['til'])
         return result['secure_url']
     except Exception as e:
         print(f"Error uploading to cloudinary: {str(e)}")
         return None 
 
 
-if __name__ == "__main__":
-    secure_url = upload_image_from_url()
-    print('secure_url', secure_url)
+# if __name__ == "__main__":
+#     secure_url = upload_image_from_url()
+#     print('secure_url', secure_url)
