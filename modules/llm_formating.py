@@ -36,28 +36,30 @@ def format_note(note):
         return None     
 
 def add_topic(note): 
-    print('add topic', note)
-    client = Groq(api_key='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')
-    completion = client.chat.completions.create(
-        model="llama3-8b-8192",
-        messages=[
-            {
-                "role": "system",
-                "content": "Give the note a short title in plain text."
-            },
-            {
-                "role": "user",
-                "content": note
-            }
-        ],
-        temperature=0.5,
-        max_tokens=20484,
-        top_p=1,
-        stream=False,
-        stop=None,
-    )
+    try: 
+        client = Groq(api_key='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')
+        completion = client.chat.completions.create(
+            model="llama3-8b-8192",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "Give the note a short title in plain text."
+                },
+                {
+                    "role": "user",
+                    "content": str(note)
+                }
+            ],
+            temperature=0.5,
+            max_tokens=20484,
+            top_p=1,
+            stream=False,
+            stop=None,
+        )
 
-    print('topic response', completion.choices[0].message.content)
-    # topic = completion.choices[0].delta.conten
-    return completion.choices[0].message.content
+        # topic = completion.choices[0].delta.conten
+        return completion.choices[0].message.content
+    except Exception as e:
+        print(f"Error add topics: {str(e)}")
+        return None    
 
