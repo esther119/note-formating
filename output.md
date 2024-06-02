@@ -1,18 +1,21 @@
-# How to Learn Better through Twitter
+# ONNX
+## Overview
 
-### Storytelling
+* ONNX (Open Neural Network Exchange) is an open format built to represent machine learning models.
+* Interoperability: ONNX aims to provide interoperability between different machine learning frameworks. This means you can train a model in one framework (like TensorFlow or PyTorch) and then transfer it to another framework (like Microsoft Cognitive Toolkit or Apple CoreML) for deployment.
+* Interoperability refers to the ability of different systems, devices, applications, or products to connect and communicate in a coordinated way
 
-* A good story links related things together
-* Images complement text
-* Text limits: like putting information on slides
+# ONNX Runtime
 
-### LinkedList
+* ONNX Runtime is an open-source inference engine for executing ONNX models. It is designed to be high-performance and lightweight, making it well-suited for deployment on a wide range of hardware platforms, including edge devices, servers, and cloud services.
 
-* Threads should link tightly together
+# ONNX File Structure
 
-### Mindset
+* An ONNX file is actually an extensible specification consisting of three parts:
+  1. Definition of an extensible computational graph model
+  2. Standard data type definition
+  3. Definition of internal operators (built-in)
 
-* Treat Twitter as a environment for concise writing
-* Inspired by Andrew Cote: make it a drill to format and explain what you're learning daily
-* Even if you can't do in-depth learning every day, you can still learn to format and explain what you're learning
-* Focus on learning, not engagement; be loyal to your learning goals
+# Resource
+
+* [ONNX - The Standard for Interoperable Deep Learning Models](https://towardsdatascience.com/onnx-the-standard-for-interoperable-deep-learning-models-a47dfbdf9a09)

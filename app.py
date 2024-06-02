@@ -39,11 +39,14 @@ def submit():
         # Simulating expected structure check
         if not isinstance(note['content'], (str, list)):
             return jsonify({'error': 'Content must be a string or a list'}), 400
-        
+        print('content data from fornt end', note['content'])
+        content= note['content']
         note_id = str(uuid.uuid4())
         creation_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-        new_markdown = format_note(note['content'])
-        topic = add_topic(note['content'])
+        print('start to new markdown')
+        new_markdown = format_note(content)
+        print('finish markdown', new_markdown)
+        topic = add_topic(content)
         new_note = {'id': note_id, 'content': new_markdown, 'creation_date': creation_date, "topic": topic}
         print('new note', new_note)
         client.hmset(note_id, new_note)
