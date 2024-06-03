@@ -1,10 +1,10 @@
 // pages/index.js
-import EditorPage from "./components/EditorPage.js";
+import EditorPage from "./components/EditorPage.jsx";
 
 const Home = () => {
   return (
     <div>
-      <div className="container mx-auto px-4 py-6 text-center">
+      <div className="container mx-auto px-4 py-6 text-center ">
         <div className="mb-4">
           <h1 className="text-5xl font-semibold text-gray-800">
             Today I Learn
@@ -17,7 +17,7 @@ const Home = () => {
           </a>
         </div>
       </div>
-      <div className="bg-white">
+      <div>
         <EditorPage></EditorPage>
       </div>
     </div>

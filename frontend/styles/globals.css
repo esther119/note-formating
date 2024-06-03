@@ -4,13 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
+  --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-}
-
-body {
-  background-color: white;
-  color: black; /* Ensure text is visible on a light grey background */
 }
 
 @layer utilities {
@@ -18,27 +13,37 @@ body {
     text-wrap: balance;
   }
 }
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  margin-top: 20px;
+}
 
 h1 {
-  @apply text-3xl font-bold tracking-tight md:text-4xl mb-4;
+  font-size: 36px;
+  margin-bottom: 10px;
 }
+
 h2 {
-  @apply text-2xl font-bold text-gray-800;
-  background-color: #f5f7fa; /* light gray background */
-  padding: 0.5rem 1rem; /* padding for spacing */
-  border-radius: 0.25rem; /* rounded corners */
-  display: inline-block; /* ensures the background wraps tightly around the text */
-  margin-bottom: 1rem; /* margin for spacing */
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
 h3 {
-  @apply text-2xl font-bold mt-2 mb-2;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
-hr {
-  @apply mb-2;
+p {
+  margin: 0 0 10px;
 }
 
 ul {
-  @apply list-disc pl-5;
+  margin: 0 0 10px;
+}
+
+li {
+  margin-bottom: 5px;
+  list-style-type: disc;
 }
