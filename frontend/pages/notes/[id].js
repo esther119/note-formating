@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
+import Image from "next/image";
 
 const Note = () => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const Note = () => {
   const [htmlContent, setHtmlContent] = useState("");
   const [creationDate, setCreationDate] = useState("");
   const [topic, setTopic] = useState("");
+  const [imageURL, setImageURL] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -21,11 +23,13 @@ const Note = () => {
             const creationDate = responseData.creation_date;
             const htmlContent = marked(responseData.content);
             const topic = responseData.topic;
-            console.log("topic", topic);
+            const imageURL = responseData.image_url;
+            console.log("topic", topic, "imageURL", imageURL);
             const safeHTML = DOMPurify.sanitize(htmlContent);
             setHtmlContent(safeHTML);
             setCreationDate(creationDate);
             setTopic(topic);
+            setImageURL(imageURL);
           }
         } catch (error) {
           console.log("Error fetching note", error);
@@ -43,6 +47,13 @@ const Note = () => {
     // <div className="mt-10 p-5 mx-auto max-w-2xl bg-white shadow-lg rounded-lg">
     <div className="mt-10 p-10 mx-auto max-w-2xl shadow-lg rounded-lg mb-10 bg-gray-100">
       <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      <Image
+        src={imageURL}
+        alt="Note image"
+        width={700} // Specify the desired width
+        height={400} // Specify the desired height
+        className="rounded"
+      />
       <p className="text-gray-500 mt-3">Esther: {creationDate}</p>
       <a
         href="/table-of-contents"
