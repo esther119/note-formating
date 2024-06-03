@@ -47,13 +47,16 @@ const Note = () => {
     // <div className="mt-10 p-5 mx-auto max-w-2xl bg-white shadow-lg rounded-lg">
     <div className="mt-10 p-10 mx-auto max-w-2xl shadow-lg rounded-lg mb-10 bg-gray-100">
       <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-      <Image
-        src={imageURL}
-        alt="Note image"
-        width={700} // Specify the desired width
-        height={400} // Specify the desired height
-        className="rounded"
-      />
+      {imageURL && (
+        <Image
+          src={imageURL}
+          alt="Note image"
+          width={700} // Specify the desired width
+          height={400} // Specify the desired height
+          className="rounded"
+        />
+      )}
+
       <p className="text-gray-500 mt-3">Esther: {creationDate}</p>
       <a
         href="/table-of-contents"
