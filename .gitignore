@@ -1,2 +1,4 @@
 .env
 myenv/
+node_modules/
+.next
