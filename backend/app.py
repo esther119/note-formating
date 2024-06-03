@@ -35,25 +35,36 @@ def submit():
         note = request.json  # Assuming the data is sent as JSON
         if not isinstance(note, dict) or 'content' not in note:
             return jsonify({'error': 'Missing or invalid "content" key'}), 400
-        
+            
         # Simulating expected structure check
         if not isinstance(note['content'], (str, list)):
             return jsonify({'error': 'Content must be a string or a list'}), 400
-        print('content data from fornt end', note['content'])
-        content= note['content']
+        print('note data from fornt end', note)
+        print('')
+        image_url = '' 
+        if note['url']: 
+            print('image url', image_url)
+            image_url = note['url']
+
+
+        content= str(note['content'])
         note_id = str(uuid.uuid4())
         creation_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
         print('start to new markdown')
         new_markdown = format_note(content)
-        print('finish markdown', new_markdown)
-        topic = add_topic(content)
-        new_note = {'id': note_id, 'content': new_markdown, 'creation_date': creation_date, "topic": topic}
-        print('new note', new_note)
-        client.hmset(note_id, new_note)
+        print('finish markdown')
+        topic = add_topic(new_markdown)
+        print('finish topic')
+        new_note = {'id': note_id, 'content': new_markdown, 'creation_date': creation_date, "topic": topic, "image_url": image_url}
+        print('finish new note')
+        # client.hset(note_id, new_note)
+        for field, value in new_note.items():
+            client.hset(note_id, field, value)
+        print('finish database')
         return jsonify(new_note), 201
-        # return { id: "123", content: "Your note content" }
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        print('error occurs in submission', e)
+        return jsonify({'error in submission': str(e)}), 500
     
 # Function to process the data
 def process_data(data):
