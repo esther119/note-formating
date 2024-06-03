@@ -95,7 +95,7 @@ export default function EditorPage() {
 
   // Renders the editor instance.
   return (
-    <div className="p-10 mx-auto max-w-5xl shadow-lg rounded-lg mb-10">
+    <div className="p-10 mx-auto max-w-5xl shadow-lg rounded-lg">
       <h1 className="text-gray-800 text-4xl">Today's Dump</h1>
       <div>
         <BlockNoteView

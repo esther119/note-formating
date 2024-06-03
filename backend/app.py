@@ -103,6 +103,17 @@ def get_all_notes():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/notes/<id>', methods=['DELETE'])
+def delete_note(id):
+    try:
+        if client.exists(id):
+            client.delete(id)
+            return jsonify({'message': 'Note deleted successfully'}), 200
+        else:
+            return jsonify({'error': 'Note not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
 @app.route('/upload', methods=['POST'])
 def upload_image():
     try: 
