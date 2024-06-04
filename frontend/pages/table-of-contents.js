@@ -62,7 +62,8 @@ const TableOfContents = () => {
               </Link>
               <button
                 onClick={() => deleteNote(note.id)}
-                className="text-red-500 hover:text-red-800 ml-4"
+                // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+                className="bg-red-500 hover:text-red-800 text-white text-sm py-1 px-2 rounded ml-4"
               >
                 Delete
               </button>

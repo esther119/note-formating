@@ -1,5 +1,6 @@
 "use client";
 import { Block, BlockNoteEditor, PartialBlock } from "@blocknote/core";
+import { BlockNoteSchema, defaultStyleSpecs } from "@blocknote/core";
 import "@blocknote/core/fonts/inter.css";
 import { BlockNoteView } from "@blocknote/mantine";
 // import { useCreateBlockNote } from "@blocknote/react";
@@ -9,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 // import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { uploadToTempURL, uploadImageToCloud } from "../utils/cloudinaryUtils";
 import { loadFromStorage, saveToStorage } from "../utils/storageUtils";
+import CurrentDate from "../components/CurrentDate";
 
 export default function EditorPage() {
   const [initialContent, setInitialContent] = useState("loading");
@@ -95,21 +97,30 @@ export default function EditorPage() {
 
   // Renders the editor instance.
   return (
-    <div className="p-10 mx-auto max-w-5xl shadow-lg rounded-lg">
-      <h1 className="text-gray-800 text-4xl">Today's Dump</h1>
+    <div className="p-10 mx-auto max-w-5xl shadow-lg rounded-lg bg-white">
+      <h1
+        className="text-gray-500 text-3xl mb-4"
+        style={{ marginLeft: "54px" }}
+      >
+        🕳️ <span className="ml-2" />
+        Today&apos;s Dump: June 3, 2024
+      </h1>
+      {/* <CurrentDate /> */}
+
       <div>
         <BlockNoteView
           editor={editor}
+          data-theming-css-demo
           theme="light"
           onChange={() => {
             saveToStorage(editor.document);
           }}
         />
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-lato py-2 px-4 rounded mt-2"
           onClick={handleSave}
         >
-          Create
+          Create Note
         </button>
       </div>
     </div>

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Slab:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,6 +17,7 @@
 h1,
 h2,
 h3 {
+  font-family: "Lato", sans-serif;
   font-weight: bold;
   margin-top: 20px;
 }
@@ -46,4 +48,37 @@ ul {
 li {
   margin-bottom: 5px;
   list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal; /* Numbered list */
+}
+
+.bn-container[data-theming-css-demo][data-color-scheme] {
+  --bn-colors-editor-text: #222222;
+  --bn-colors-editor-background: #ffffff;
+  --bn-colors-side-menu: #bababa;
+  --bn-color-highlight-colors: #ffffff;
+  --bn-border-radius: 4px;
+  --bn-font-family: "Lato", sans-serif;
+  --bn-font-size: 16px; /* Base font size */
+  --bn-font-size-h1: 8px; /* Font size for h1 */
+  --bn-font-size-h2: 8px; /* Font size for h2 */
+  --bn-font-size-h3: 8px; /* Font size for h3 */
+}
+
+.bn-container .editor-content {
+  font-size: var(--bn-font-size);
+}
+
+.bn-container .editor-content h1 {
+  font-size: var(--bn-font-size-h1);
+}
+
+.bn-container .editor-content h2 {
+  font-size: var(--bn-font-size-h2);
+}
+
+.bn-container .editor-content h3 {
+  font-size: var(--bn-font-size-h3);
 }
