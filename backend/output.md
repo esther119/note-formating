@@ -1,17 +1,14 @@
-# How can I improve my design of "Today I Learn"?
-## Concept mapping
+## Create Group Routes in Python
 
-* Today I Learn: fun font, like a **logo**
-* Today's Dump: like a **label**
-	+ thinner, dark grey
-	+ left align
-* Create button: create note
-* Overall
-	+ padding at the bottom
-	+ round the corner more
+### What is Blueprint?
 
-# Copycat
-* increase the blur of the shadow: Inspect Tiktok
+* A blueprint object named `routes`. This object is used to organize a group of related routes and other view functions into a modular structure that can be registered in a Flask application.
 
-# Visuals
-* trash icon (grey)
+### Creating Subroutes
+
+* `@routes.route("/get_cards_for_deck/", methods=["POST"])`
+	+ `def get_cards_for_deck(deck_id): ...`
+
+### Register Blueprint
+
+* `app.register_blueprint(study_group_routes.routes, url_prefix="/groups")`

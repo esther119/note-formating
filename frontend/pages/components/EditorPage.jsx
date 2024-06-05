@@ -98,15 +98,13 @@ export default function EditorPage() {
   // Renders the editor instance.
   return (
     <div className="p-10 mx-auto max-w-5xl shadow-lg rounded-lg bg-white">
-      <h1
-        className="text-gray-500 text-3xl mb-4"
-        style={{ marginLeft: "54px" }}
-      >
-        🕳️ <span className="ml-2" />
-        Today&apos;s Dump: June 3, 2024
-      </h1>
-      {/* <CurrentDate /> */}
-
+      <div className="flex items-center">
+        <h1 className="text-gray-500 text-3xl" style={{ marginLeft: "54px" }}>
+          🕳️ <span className="ml-2" />
+          Today&apos;s Dump: <span className="ml-2" />
+        </h1>
+        <CurrentDate />
+      </div>
       <div>
         <BlockNoteView
           editor={editor}

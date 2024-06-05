@@ -7,17 +7,17 @@ const CurrentDate = () => {
   useEffect(() => {
     const date = new Date();
     const options = {
-      //   weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+      month: "short", // Short month name, e.g., "Oct"
+      day: "2-digit",
     };
     const formattedDate = date.toLocaleDateString(undefined, options);
     setCurrentDate(formattedDate);
   }, []);
 
   return (
-    <div className="text-gray-500 text-xl mb-4 font-lato">{currentDate}</div>
+    <div>
+      <h1 className="text-gray-500 font-lato text-3xl">{currentDate}</h1>
+    </div>
   );
 };
 

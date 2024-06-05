@@ -54,6 +54,24 @@ ol {
   list-style-type: decimal; /* Numbered list */
 }
 
+/* Styling for the nested list items */
+ul ul {
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  list-style-type: disc; /* For inner bullets */
+}
+
+ul ul li {
+  margin-bottom: 0.5em;
+  color: rgb(58, 58, 58); /* Dark grey for inner list items */
+  text-align: left; /* Left align */
+}
+
+/* Styling for the overall layout */
+body {
+  padding-bottom: 2em; /* Padding at the bottom */
+}
+
 .bn-container[data-theming-css-demo][data-color-scheme] {
   --bn-colors-editor-text: #222222;
   --bn-colors-editor-background: #ffffff;
