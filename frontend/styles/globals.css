@@ -1,16 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Slab:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
+  --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-}
-
-body {
-  background-color: white;
-  color: black; /* Ensure text is visible on a light grey background */
 }
 
 @layer utilities {
@@ -18,27 +14,89 @@ body {
     text-wrap: balance;
   }
 }
+h1,
+h2,
+h3 {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+}
 
 h1 {
-  @apply text-3xl font-bold tracking-tight md:text-4xl mb-4;
+  font-size: 36px;
+  margin-bottom: 10px;
 }
+
 h2 {
-  @apply text-2xl font-bold text-gray-800;
-  background-color: #f5f7fa; /* light gray background */
-  padding: 0.5rem 1rem; /* padding for spacing */
-  border-radius: 0.25rem; /* rounded corners */
-  display: inline-block; /* ensures the background wraps tightly around the text */
-  margin-bottom: 1rem; /* margin for spacing */
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
 h3 {
-  @apply text-2xl font-bold mt-2 mb-2;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
-hr {
-  @apply mb-2;
+p {
+  margin: 0 0 10px;
 }
 
 ul {
-  @apply list-disc pl-5;
+  margin: 0 0 10px;
+}
+
+li {
+  margin-bottom: 5px;
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal; /* Numbered list */
+}
+
+/* Styling for the nested list items */
+ul ul {
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  list-style-type: disc; /* For inner bullets */
+}
+
+ul ul li {
+  margin-bottom: 0.5em;
+  color: rgb(58, 58, 58); /* Dark grey for inner list items */
+  text-align: left; /* Left align */
+}
+
+/* Styling for the overall layout */
+body {
+  padding-bottom: 2em; /* Padding at the bottom */
+}
+
+.bn-container[data-theming-css-demo][data-color-scheme] {
+  --bn-colors-editor-text: #222222;
+  --bn-colors-editor-background: #ffffff;
+  --bn-colors-side-menu: #bababa;
+  --bn-color-highlight-colors: #ffffff;
+  --bn-border-radius: 4px;
+  --bn-font-family: "Lato", sans-serif;
+  --bn-font-size: 16px; /* Base font size */
+  --bn-font-size-h1: 8px; /* Font size for h1 */
+  --bn-font-size-h2: 8px; /* Font size for h2 */
+  --bn-font-size-h3: 8px; /* Font size for h3 */
+}
+
+.bn-container .editor-content {
+  font-size: var(--bn-font-size);
+}
+
+.bn-container .editor-content h1 {
+  font-size: var(--bn-font-size-h1);
+}
+
+.bn-container .editor-content h2 {
+  font-size: var(--bn-font-size-h2);
+}
+
+.bn-container .editor-content h3 {
+  font-size: var(--bn-font-size-h3);
 }
