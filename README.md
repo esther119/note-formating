@@ -17,7 +17,9 @@ The frontend application is built using Next.js.
 
 3. Running the Application: `npm run dev`
 
-### Environment Variables: `NEXT_PUBLIC_BACKEND_URL=http://localhost:5000`
+### Environment Variables:
+
+`NEXT_PUBLIC_BACKEND_URL=http://localhost:5000`
 
 ### Pages and Components
 
