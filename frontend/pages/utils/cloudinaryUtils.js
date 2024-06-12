@@ -1,12 +1,15 @@
 export const uploadImageToCloud = async (imageUrl) => {
   try {
-    const response = await fetch("http://127.0.0.1:5000/upload", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ url: imageUrl }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKNEND_URL}/upload`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: imageUrl }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not ok");

@@ -30,13 +30,16 @@ export default function EditorPage() {
       const secureURL = await uploadImageToCloud(tempURL);
       console.log("get secureURL front end", secureURL);
       // return;
-      const response = await fetch("http://127.0.0.1:5000/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content: initialContent, url: secureURL }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKNEND_URL}/submit`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: initialContent, url: secureURL }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Error in submission response: ${response.statusText}`);

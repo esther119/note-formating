@@ -9,7 +9,9 @@ const TableOfContents = () => {
     const fetchNoteIds = async () => {
       setIsLoading(true); // Start loading
       try {
-        const response = await fetch("http://127.0.0.1:5000/notes");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKNEND_URL}/notes`
+        );
         if (response.ok) {
           const responseData = await response.json();
           console.log("get the table of content", responseData);
@@ -28,9 +30,12 @@ const TableOfContents = () => {
   const deleteNote = async (id) => {
     console.log("deleted note id", id);
     try {
-      const response = await fetch(`http://127.0.0.1:5000/notes/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKNEND_URL}/notes/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         console.log("delete note in the backend");
         setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));

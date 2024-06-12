@@ -16,7 +16,9 @@ const Note = () => {
     if (id) {
       const getNote = async () => {
         try {
-          const response = await fetch(`http://127.0.0.1:5000/notes/${id}`);
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKNEND_URL}/notes/${id}`
+          );
           if (response.ok) {
             const responseData = await response.json();
             console.log("response data", responseData);

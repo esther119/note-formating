@@ -1,14 +1,19 @@
-## Create Group Routes in Python
+# How to effectively reuse old backend endpoints?
 
-### What is Blueprint?
+Problem: It's really a big pain to see through all the variables and see how to reuse their sub functions in their main functions.
 
-* A blueprint object named `routes`. This object is used to organize a group of related routes and other view functions into a modular structure that can be registered in a Flask application.
+## Rules of thumbs
 
-### Creating Subroutes
+### List out input and output:
+List out all the variables for their endpoints and inner subfunctions
 
-* `@routes.route("/get_cards_for_deck/", methods=["POST"])`
-	+ `def get_cards_for_deck(deck_id): ...`
+### Map and compare data structures:
+Compare how the variables change in my scenario
 
-### Register Blueprint
+### Decision making:
+#### Modify my data structure to adapt to the code : where else can I get the data?
+#### Modify the existing code
+#### Create a new endpoint
 
-* `app.register_blueprint(study_group_routes.routes, url_prefix="/groups")`
+### Ask the author:
+Discuss and check if my assumptions are correct, and if there is other data structure or methods to use.
