@@ -1,10 +1,13 @@
 
 from groq import Groq
+import os
+from dotenv import load_dotenv
 
-def format_note(note): 
-    try: 
-        client = Groq(api_key='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')
-        # print('input note', note)
+
+def format_note(note):
+    try:
+        client = Groq(
+            api_key=os.getenv('GROQ_API_KEY'))
         completion = client.chat.completions.create(
             model="llama3-8b-8192",
             messages=[
@@ -33,11 +36,13 @@ def format_note(note):
         return all_chunks_content
     except Exception as e:
         print(f"Error formating into new notes: {str(e)}")
-        return None     
+        return None
 
-def add_topic(note): 
+
+def add_topic(note):
     print('add topic', note)
-    client = Groq(api_key='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')
+    client = Groq(
+        api_key=os.getenv('GROQ_API_KEY'))
     completion = client.chat.completions.create(
         model="llama3-8b-8192",
         messages=[
@@ -60,4 +65,3 @@ def add_topic(note):
     print('topic response', completion.choices[0].message.content)
     # topic = completion.choices[0].delta.conten
     return completion.choices[0].message.content
-
