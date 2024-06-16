@@ -15,7 +15,10 @@ const TableOfContents = () => {
         if (response.ok) {
           const responseData = await response.json();
           console.log("get the table of content", responseData);
-          setNotes(responseData);
+          const sortedNotes = responseData.sort(
+            (a, b) => new Date(b.creation_date) - new Date(a.creation_date)
+          );
+          setNotes(sortedNotes);
         }
       } catch (error) {
         console.log("Error fetching note IDs", error);
