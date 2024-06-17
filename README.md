@@ -69,6 +69,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 - `DELETE /notes/<id>`: Delete a specific note by ID.
 - `POST /upload`: Upload an image and get the URL.
 
-```
+# To do:
 
-```
+- the double indention for CSS display
+- create code block and display a code blocks that doesn't exceed the notes
