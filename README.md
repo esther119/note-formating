@@ -73,3 +73,6 @@ CLOUDINARY_API_SECRET=your_api_secret
 
 - the double indention for CSS display
 - create code block and display a code blocks that doesn't exceed the notes
+- Allow multiple images
+- image results is terrible, the detailed of images get generated in markdown
+

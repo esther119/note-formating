@@ -61,12 +61,23 @@ ul ul {
   list-style-type: disc; /* For inner bullets */
 }
 
+ul li {
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  list-style-type: disc; /* For inner bullets */
+}
+
 ul ul li {
   margin-bottom: 0.5em;
   color: rgb(58, 58, 58); /* Dark grey for inner list items */
   text-align: left; /* Left align */
 }
 
+ul ul ul {
+  margin-bottom: 0.5em;
+  color: rgb(58, 58, 58); /* Dark grey for inner list items */
+  text-align: left; /* Left align */
+}
 /* Styling for the overall layout */
 body {
   padding-bottom: 2em; /* Padding at the bottom */

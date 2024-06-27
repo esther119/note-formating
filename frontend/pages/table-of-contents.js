@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import TrashIcon from "../pages/icons/trash";
 
 const TableOfContents = () => {
   const [notes, setNotes] = useState([]);
@@ -71,9 +72,9 @@ const TableOfContents = () => {
               <button
                 onClick={() => deleteNote(note.id)}
                 // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-                className="bg-red-500 hover:text-red-800 text-white text-sm py-1 px-2 rounded ml-4"
+                className="ml-4"
               >
-                Delete
+                <TrashIcon></TrashIcon>
               </button>
             </li>
           ))}

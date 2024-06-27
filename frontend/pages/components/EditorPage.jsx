@@ -1,11 +1,22 @@
 "use client";
-import { Block, BlockNoteEditor, PartialBlock } from "@blocknote/core";
-import { BlockNoteSchema, defaultStyleSpecs } from "@blocknote/core";
+import {
+  Block,
+  BlockNoteEditor,
+  filterSuggestionItems,
+  PartialBlock,
+} from "@blocknote/core";
+import { BlockNoteSchema, defaultBlockSpecs } from "@blocknote/core";
 import "@blocknote/core/fonts/inter.css";
 import { BlockNoteView } from "@blocknote/mantine";
 // import { useCreateBlockNote } from "@blocknote/react";
 import "@blocknote/mantine/style.css";
 import { useEffect, useMemo, useState } from "react";
+import {
+  DefaultReactSuggestionItem,
+  getDefaultReactSlashMenuItems,
+  SuggestionMenuController,
+  useCreateBlockNote,
+} from "@blocknote/react";
 // import CodeBlock from "@tiptap/extension-code-block";
 // import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { uploadToTempURL, uploadImageToCloud } from "../utils/cloudinaryUtils";
@@ -15,6 +26,31 @@ import CurrentDate from "../components/CurrentDate";
 export default function EditorPage() {
   const [initialContent, setInitialContent] = useState("loading");
   const [tempURL, setTempURL] = useState(null);
+
+  // Custom Slash Menu item to insert a block after the current one.
+  const insertHelloWorldItem = (editor) => ({
+    title: "Code Block",
+    onItemClick: () => {
+      // Block that the text cursor is currently in.
+      const currentBlock = editor.getTextCursorPosition().prevBlock;
+
+      // New block we want to insert.
+      const helloWorldBlock = {
+        type: "paragraph",
+        content: [{ type: "text", text: "Code block", styles: { bold: true } }],
+      };
+
+      // Inserting the new block after the current one.
+      editor.insertBlocks([helloWorldBlock], currentBlock, "after");
+    },
+    aliases: ["helloworld", "hw"],
+    group: "Other",
+    subtext: "Used to insert a code block",
+  });
+  const getCustomSlashMenuItems = (editor) => [
+    ...getDefaultReactSlashMenuItems(editor),
+    insertHelloWorldItem(editor),
+  ];
 
   const handleFileUpload = async (file) => {
     console.log("get the file");
@@ -116,7 +152,16 @@ export default function EditorPage() {
           onChange={() => {
             saveToStorage(editor.document);
           }}
-        />
+          slashMenu={false}
+        >
+          <SuggestionMenuController
+            triggerCharacter={"/"}
+            // Replaces the default Slash Menu items with our custom ones.
+            getItems={async (query) =>
+              filterSuggestionItems(getCustomSlashMenuItems(editor), query)
+            }
+          />
+        </BlockNoteView>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-lato py-2 px-4 rounded mt-2"
           onClick={handleSave}
