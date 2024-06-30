@@ -10,7 +10,8 @@ import os
 
 app = Flask(__name__)
 # Allow CORS for requests from http://localhost:3000
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={
+     r"/*": {"origins": ["http://localhost:3000", "http://localhost:3001"]}})
 
 # Create a connection to the Redis server
 client = redis.StrictRedis(host='localhost', port=6379,
@@ -53,7 +54,7 @@ def submit():
         content = str(note['content'])
         note_id = str(uuid.uuid4())
         creation_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-        print('start to new markdown')
+        print('start to new markdown', content)
         new_markdown = format_note(content)
         print('finish markdown')
         topic = add_topic(new_markdown)
@@ -62,6 +63,8 @@ def submit():
                     'creation_date': creation_date, "topic": topic, "image_url": image_url}
         print('finish new note')
         # client.hset(note_id, new_note)
+        print('')
+        print(new_note)
         for field, value in new_note.items():
             client.hset(note_id, field, value)
         print('finish database')
