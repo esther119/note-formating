@@ -8,7 +8,7 @@ const Home = () => {
         <div className="container mx-auto px-4 pt-6 text-center">
           <div className="mb-4">
             <h1 className="text-5xl font-semibold font-robotoSlab text-gray-800">
-              Today I Learn
+              Today I Learn & Ask for help
             </h1>
             <a
               href="/table-of-contents"
