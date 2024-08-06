@@ -1,22 +1,27 @@
-# Clustering for embedding for tiny chunks
+# Will snapshot be activated if backend already update the data?
 
-## Clustering Method
+## Overview
 
-A paper suggests using clustering for the RAG problems (which can only retrieve short, contiguous chunks of text). Method:
+Yes, if your backend already has the data, the subscribe function (onSnapshot) will still be activated. Here's how it works:
 
-1. Create chunks
-2. Embed chunks
-3. GMM cluster embedding
-4. Summarize chunks
-5. Use those chunks to repeat Step 2
+- When you set up an onSnapshot listener, it immediately queries the database for the current state of the documents that match your query.
+- If the data already exists in the backend, the onSnapshot callback will fire immediately with the existing data. This is often referred to as the **"initial state"** or **"initial snapshot"**.
+- After this initial snapshot, the listener remains active and will continue to listen for any changes to the queried documents.
+- If any changes occur to the relevant documents in the future, the onSnapshot callback will fire again with the updated data.
 
-## Personal question & critique
+## Specific Case
 
-**Personal question & critique:** 
-The result isn't that good, and I wonder if generating a chunk summary isn't the best way to synthesize the info? Chunks after clustering are similar but have different info in random orders. It might end up with repetitive info in places
+1. The `useEffect` hook sets up the listener when the component mounts or when `currentMissedCardIndex` changes.
+2. If the data for the current missed card already exists in the backend, the onSnapshot callback will fire immediately, updating your local state (`analogyText` and `whatYouNeedToKnowBulletPoints`) with the existing data.
+3. The listener will then continue to watch for any changes to these documents.
+4. This approach ensures that your component always has the most up-to-date data, whether it's already in the backend when the component mounts, or if it's added or modified later.
 
-## Ideas
+## Optimization Tips
 
-**Ideas:**
-1. What if we use a key points/knowledge tree rather than a summary?
-2. What if instead of using GMM, we use LLM for clustering?
+- Use a one-time read operation (like `get()`) if real-time updates aren't necessary.
+- Implement some form of caching to reduce database reads.
+- Use a loading state to show a spinner only when data is actually being fetched, rather than on every render of this component.
+
+## Example
+
+The use of `onSnapshot` creates a persistent connection to Firestore. This means that if the data for any of the missed question cards is updated in the database, this listener will automatically receive the new data and update the component's state accordingly.

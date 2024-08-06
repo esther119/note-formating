@@ -44,7 +44,7 @@ def submit():
         # Simulating expected structure check
         if not isinstance(note['content'], (str, list)):
             return jsonify({'error': 'Content must be a string or a list'}), 400
-        print('note data from fornt end', note)
+        # print('note data from fornt end', note)
         print('')
         image_url = ''
         if note['url']:
@@ -54,7 +54,7 @@ def submit():
         content = str(note['content'])
         note_id = str(uuid.uuid4())
         creation_date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-        print('start to new markdown', content)
+        # print('start to new markdown', content)
         new_markdown = format_note(content)
         print('finish markdown')
         topic = add_topic(new_markdown)
