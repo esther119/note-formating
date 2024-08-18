@@ -60,12 +60,12 @@ const Note = () => {
       )}
 
       <p className="text-gray-500 mt-3">Esther: {creationDate}</p>
-      <a
+      <Link
         href="/table-of-contents"
         className="text-blue-500 hover:text-blue-700 mt-1 inline-block"
       >
         Back to all notes
-      </a>
+      </Link>
     </div>
   );
 };

@@ -10,12 +10,12 @@ const Home = () => {
             <h1 className="text-5xl font-semibold font-robotoSlab text-gray-800">
               Today I Learn
             </h1>
-            <a
+            <Link
               href="/table-of-contents"
               className="text-blue-500 hover:text-blue-700 mt-2 inline-block"
             >
               Go to all the notes
-            </a>
+            </Link>
           </div>
         </div>
         <div>
