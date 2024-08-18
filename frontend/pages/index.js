@@ -1,5 +1,6 @@
 // pages/index.js
 import EditorPage from "./components/EditorPage.jsx";
+import Link from "next/link";
 
 const Home = () => {
   return (

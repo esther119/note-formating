@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import Image from "next/image";
+import Link from "next/link";
 
 const Note = () => {
   const router = useRouter();
