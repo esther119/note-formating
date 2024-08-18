@@ -19,8 +19,11 @@ import {
 } from "@blocknote/react";
 // import CodeBlock from "@tiptap/extension-code-block";
 // import HorizontalRule from "@tiptap/extension-horizontal-rule";
-import { uploadToTempURL, uploadImageToCloud } from "../utils/cloudinaryUtils";
-import { loadFromStorage, saveToStorage } from "../utils/storageUtils";
+import {
+  uploadToTempURL,
+  uploadImageToCloud,
+} from "../../utils/cloudinaryUtils";
+import { loadFromStorage, saveToStorage } from "../../utils/storageUtils";
 import CurrentDate from "../components/CurrentDate";
 
 export default function EditorPage() {
