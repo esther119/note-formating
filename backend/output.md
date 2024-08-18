@@ -1,27 +1,52 @@
-# Will snapshot be activated if backend already update the data?
+# Debugging techniques for state discrepancy
 
-## Overview
+### Use ref debugging techniques
 
-Yes, if your backend already has the data, the subscribe function (onSnapshot) will still be activated. Here's how it works:
+```javascript
+useEffect(() => {
+  console.log("Effect running, cardsData:", cardStore.getState().cardsData);
+  cardsDataRef.current = cardStore.getState().cardsData;
+  // Rest of your effect logic
+}, []);
+```
 
-- When you set up an onSnapshot listener, it immediately queries the database for the current state of the documents that match your query.
-- If the data already exists in the backend, the onSnapshot callback will fire immediately with the existing data. This is often referred to as the **"initial state"** or **"initial snapshot"**.
-- After this initial snapshot, the listener remains active and will continue to listen for any changes to the queried documents.
-- If any changes occur to the relevant documents in the future, the onSnapshot callback will fire again with the updated data.
+### Why do you use ref?
 
-## Specific Case
+- **Capturing the latest value**: 
+   - The ref (cardsDataRef) allows you to capture and store the most recent value of cardsData at the time the effect runs. This is useful because refs persist across re-renders without causing additional renders themselves.
 
-1. The `useEffect` hook sets up the listener when the component mounts or when `currentMissedCardIndex` changes.
-2. If the data for the current missed card already exists in the backend, the onSnapshot callback will fire immediately, updating your local state (`analogyText` and `whatYouNeedToKnowBulletPoints`) with the existing data.
-3. The listener will then continue to watch for any changes to these documents.
-4. This approach ensures that your component always has the most up-to-date data, whether it's already in the backend when the component mounts, or if it's added or modified later.
+- **Comparing with future renders**: 
+   - By storing the value in a ref, you can compare it with future renders or effects to see if and how the data has changed. This is particularly useful when you suspect that data might be changing rapidly or unexpectedly.
 
-## Optimization Tips
+- **Accessing up-to-date values in cleanup functions**: 
+   - The cleanup function of a useEffect (the function returned by the effect) closes over the values from the render where it was created. By using a ref, you ensure you're always accessing the most recent value, even in the cleanup function.
 
-- Use a one-time read operation (like `get()`) if real-time updates aren't necessary.
-- Implement some form of caching to reduce database reads.
-- Use a loading state to show a spinner only when data is actually being fetched, rather than on every render of this component.
+### Example usage
 
-## Example
+- **Render vs. Effect Timing**: 
+   - The first console.log runs during the render phase, while the useEffect runs after the component has been painted to the screen (in the commit phase). If there's any code updating the Zustand store between these two phases, you might see a difference.
 
-The use of `onSnapshot` creates a persistent connection to Firestore. This means that if the data for any of the missed question cards is updated in the database, this listener will automatically receive the new data and update the component's state accordingly.
+```javascript
+const cardsDataRef = useRef(null);
+console.log("Component rendering, cardsData:", cardStore.getState().cardsData);
+useEffect(() => {
+  console.log("Effect running, cardsData:", cardStore.getState().cardsData);
+  cardsDataRef.current = cardStore.getState().cardsData;
+  // Rest of your effect logic
+}, []);
+```
+
+- Note: The component rendering is the loading when the component mounted, and it seems that useEffect data is updated slightly slower than the first mounting.
+
+- **Example testing method to see the difference in rendering**:
+```javascript
+const renderData = cardStore.getState().cardsData;
+console.log("Component rendering, cardsData:", renderData);
+useEffect(() => {
+  const effectData = cardStore.getState().cardsData;
+  console.log("Effect running, cardsData:", effectData);
+  console.log("Data changed:", renderData !== effectData);
+  cardsDataRef.current = effectData;
+  // Rest of your effect logic
+}, []);
+```

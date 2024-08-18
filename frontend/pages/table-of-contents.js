@@ -80,12 +80,12 @@ const TableOfContents = () => {
           ))}
         </ul>
       )}
-      <a
+      <Link
         href="/"
         className="text-blue-500 hover:text-blue-700 mt-2 inline-block"
       >
         Back to Today's Dump
-      </a>
+      </Link>
     </div>
   );
 };
