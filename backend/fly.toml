@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for backend-frosty-field-9988 on 2024-08-18T15:40:28-07:00
+# fly.toml app configuration file generated for backend-note-formatting on 2024-10-12T21:04:31-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'backend-frosty-field-9988'
+app = 'backend-note-formatting'
 primary_region = 'sjc'
 
 [build]

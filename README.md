@@ -76,3 +76,13 @@ CLOUDINARY_API_SECRET=your_api_secret
 - Allow multiple images
 - image results is terrible, the detailed of images get generated in markdown
 
+# Quick app run command
+
+Backend
+
+- `cd backend`
+- `source myenv/bin/activate`
+- `python3 app.py`
+  Frontend
+- `cd frontend`
+- `npm run dev`

@@ -4,8 +4,10 @@ from modules.cloudinary_helper import upload_image_from_url
 from flask_cors import CORS
 import uuid
 import redis
+from upstash_redis import Redis
 from datetime import datetime
 import os
+
 
 
 app = Flask(__name__)
@@ -13,9 +15,11 @@ app = Flask(__name__)
 CORS(app, resources={
      r"/*": {"origins": ["http://localhost:3000", "http://localhost:3001"]}})
 
+
+client=Redis(url=os.getenv('UPSTASH_REDIS_REST_URL'), token=os.getenv('UPSTASH_REDIS_REST_TOKEN'))
 # Create a connection to the Redis server
-client = redis.StrictRedis(host='localhost', port=6379,
-                           db=0, decode_responses=True)
+# client = redis.StrictRedis(host='localhost', port=6379,
+#                            db=0, decode_responses=True)
 
 
 # Route to render the HTML form
@@ -139,4 +143,5 @@ def upload_image():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
