@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 # Allow CORS for requests from http://localhost:3000
 CORS(app, resources={
-     r"/*": {"origins": ["http://localhost:3000", "http://localhost:3001"]}})
+     r"/*": {"origins": ["http://localhost:3000", "http://localhost:3001", "https://note-formating.vercel.app"]}})
 
 
 client=Redis(url=os.getenv('UPSTASH_REDIS_REST_URL'), token=os.getenv('UPSTASH_REDIS_REST_TOKEN'))
