@@ -25,3 +25,4 @@ typing_extensions==4.12.1
 urllib3==2.2.1
 Werkzeug==3.0.3
 openai
+upstash_redis

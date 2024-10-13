@@ -1,4 +1,4 @@
-# React rerendeing 
+# React rerendering
 
 ## Problem
 

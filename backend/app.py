@@ -49,7 +49,6 @@ def submit():
         if not isinstance(note['content'], (str, list)):
             return jsonify({'error': 'Content must be a string or a list'}), 400
         # print('note data from fornt end', note)
-        print('')
         image_url = ''
         if note['url']:
             print('image url', image_url)
@@ -64,13 +63,13 @@ def submit():
         topic = add_topic(new_markdown)
         print('finish topic')
         new_note = {'id': note_id, 'content': new_markdown,
-                    'creation_date': creation_date, "topic": topic, "image_url": image_url}
+                    'creation_date': creation_date, "topic": topic, "url": image_url}
         print('finish new note')
         # client.hset(note_id, new_note)
-        print('')
         print(new_note)
         for field, value in new_note.items():
-            client.hset(note_id, field, value)
+            # client.hset(note_id, field, value)
+            client.hmset(note_id, {field: value})
         print('finish database')
         return jsonify(new_note), 201
     except Exception as e:
@@ -143,5 +142,4 @@ def upload_image():
 
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True)
